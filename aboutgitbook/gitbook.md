@@ -4,7 +4,8 @@ GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Ma
 
 GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书，GitBook 并非关于 Git 的教程。
 
-##### GitBook支持输出多种文档格式：
+**GitBook支持输出多种文档格式：**
+
 * 静态站点：GitBook默认输出该种格式，生成的静态站点可直接托管搭载Github Pages服务上。
 * PDF：需要安装gitbook-pdf依赖。
 * eBook：需要安装ebook-convert。
@@ -13,13 +14,13 @@ GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Ma
 
 使用GitBook制作电子书，必备两个文件：README.md和SUMMARY.md。
 
-##### 本网站就是用 Gitbook 制作的
+**本网站就是用 Gitbook 制作的**
 
 <hr>
 
-### 安装与使用：
+## 安装与使用：
 
-#### 一、安装：
+### 一、安装：
 
 > **info**
 >
@@ -31,7 +32,7 @@ GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Ma
 $ npm install gitbook-cli -g
 ```
 
-#### 二、使用：
+### 二、使用：
 
 **1. 新建书籍：**进入想要存放书籍的文件夹，运行该语句：
 
