@@ -1,6 +1,6 @@
 # 添加 "Run CMD Here" 到鼠标右键 
 
-> **复制下面的代码到一个txt文档，改扩展名为：XXX.reg，双击添加到注册表即可**
+>**info**  **复制下面的代码到一个txt文档，改扩展名为：XXX.reg，双击添加到注册表即可**
 
 ```
 Windows Registry Editor Version 5.00
