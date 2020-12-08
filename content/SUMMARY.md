@@ -2,9 +2,9 @@
 
 * [首页](README.md)
 * 应用
-  * [文档编辑](文档编辑/文档编辑.md)
+  * [文档编辑](应用/文档编辑/文档编辑.md)
   	* [CHM文档](文档编辑/chm.md)
-  * [Windows操作技巧](Windows操作技术/windows.md)
+  * [Windows操作技巧](应用/Windows操作技术/windows.md)
   	* [添加 "Run CMD Here" 到右键](Windows操作技术/CMD右键.md)
 * 网络
   * [Git & Github](网站搭建/gitandgithub.md)

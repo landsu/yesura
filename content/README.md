@@ -2,9 +2,9 @@
 
 **应用**
 
-> [文档编辑](文档编辑/文档编辑.md)
+> [文档编辑](应用/文档编辑/文档编辑.md)
 >
-> [Windows 操作技巧](Windows操作技术/windows.md)
+> [Windows 操作技巧](应用/Windows操作技术/windows.md)
 
 **网络**
 
