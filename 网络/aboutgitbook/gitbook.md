@@ -182,21 +182,7 @@ $ gitbook mobi
     
     "variables": {
         "version": "1.0.0"
-    },
-
-
-
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/yesura/yesura.github.io.git"
-    },
-    "keywords": "Yesura",
-    "author": "Stephen",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/yesura/yesura.github.io/issues"
-    },
-    "homepage": "https://yesura.github.io/"
+    }
 }  
 ```
 
