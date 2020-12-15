@@ -391,3 +391,19 @@ rem  3 File(s) copied
 ```
 
 在前面的示例中，此特定的源参数值 **。 \即使 \* \**删除了两个\**路径 \ 字符，** docker-compose.override.yml 也会复制相同的3个文件。 但是，如果从 source 参数中删除星号通配符，则不会复制任何文件 **。 \docker-compose.override.yml**。
+
+## 3、set
+
+```
+set path=c:\test
+
+set /p path=请输入路径：
+
+del %path%\test.txt /q
+```
+
+> set 变量=变量值
+>
+> /p 表变量值为输入值，输入变量值，然后赋值给变量。
+>
+> 然后就可以使用：%变量% 来代替变量值了
