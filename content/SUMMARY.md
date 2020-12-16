@@ -7,6 +7,8 @@
   * [Windows操作技巧](应用/Windows操作技术/windows.md)
   	* [添加 "Run CMD Here" 到右键](应用/Windows操作技术/CMD右键.md)
   	* [Bat批处理](应用/Windows操作技术/BatRen.md)
+  * [开发](应用/开发/开发.md)
+    * [VS Code](应用/开发/vscode.md)
 * 网络
   * [Git & Github](网络/gitandgithub.md)
   * [Gitbook](网络/aboutgitbook/gitbook.md)
