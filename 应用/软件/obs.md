@@ -50,4 +50,5 @@
 - 下方 “来源” 是捕捉视频来源，可以是整个屏幕，可以是某个窗口，可以是浏览器等等，也可以混合多种元素
 - 右下角 “控件”，点击 “开始推流”，即可开始主直播平台的直播，主直播平台设置参二1
 
-![](F:\Users\Stephen\github\yesura\gitbook\yesura.github.io\content\pic\002 obs\1.jpg)
+![](..\..\pic\002 obs\1.jpg)
+
