@@ -18,7 +18,9 @@
       "styled-blockquotes",
       "copy-code-button",
       "cuav-chapters",
-      "anchor-navigation-ex-toc"
+      "anchor-navigation-ex-toc",
+      "-todo",
+      "todos"
     ],
     "pluginsConfig": {
       "prism": {
