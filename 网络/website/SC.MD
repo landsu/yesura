@@ -21,6 +21,8 @@ r.status_code #查看状态，200即表示已经成功抓取数据，其他数�
 r.text #显示数据包内容（无格式）
 ```
 
+
+
 - **对抓取的HTML数据，或本地HTML文件解析：**
 
 ```python
@@ -28,6 +30,8 @@ from bs4 import BeautifulSoup #引入BeautifulSoup库
 soup = BeautifulSoup(data, 'html.parser') #data可以是"<p>Hello World!</p>"", 可以是r.text, 可以是 open("D://demo.html")
 print(soup.prettiy()) #格式化输出
 ```
+
+
 
 - **提取想要的信息：**
 
@@ -43,6 +47,8 @@ for str in smalltilte:
 
 
 ```
+
+
 
 - **保存信息为 JSON 文档：**
 
@@ -62,6 +68,8 @@ json_str = json.dumps(dict0, ensure_ascii=False) # 禁用默认编码：AscII,�
 with open('test_data.json', 'w') as json_file: # json文件路径默认是C盘User根目录
     json_file.write(json_str)
 ```
+
+
 
 - **清明网获取小标题的爬虫代码：**
 
@@ -100,6 +108,8 @@ json_str = json.dumps(dict0, ensure_ascii=False)
 with open('test_data.json', 'w') as json_file:
     json_file.write(json_str)
 ```
+
+
 
 - **清明爬虫程序全代码备份**
 
@@ -256,11 +266,36 @@ main()
 
 ### 2、Elasticsearch API
 
+- **Python写入数据：**
+
+> 安装：` $ python -m pip install elasticsearch`
+
+```python
+from elasticsearch import Elasticsearch
+es = Elasticsearch()
+
+doc = { # 吸入的内容格式
+    'author': 'author_name',
+    'text': 'Interensting content...'
+}
+res = es.index(index="test-index", id=1, body=doc) #写入
+print(res['result'])
+
+#结构：
+Elasticsearch().index(index="test-index", id=1, body={"我是插入数据的key":"我是插入数据的Velue"})
+
+
+```
+
+
+
 - **PHP 调用 ES:**
 
 ```php+HTML
 待更新....
 ```
+
+
 
 - **批量导入数据：**
 
@@ -271,11 +306,11 @@ POST _bulk
 
 ```
 
-### 3、Vue 技术：
+### 3、Vue：
 
 待更新
 
-### 4、 ElementUI
+### 4、Element-UI
 
 待更新
 
@@ -389,7 +424,7 @@ print(data)
 - [x] 查询结果显示内容链接
 - [x] Python按Elasticsearch批量导入代码格式，输出数据（完成百分九十，剩余部分容易）
 - [x] Python爬取纲目、摘录
-- [ ] Python自动导入数据到Elasticsearch
+- [x] Python自动导入数据到Elasticsearch
 - [ ] Vue + ElementUI 设计登陆页、查询页、搜索结果页
 - [ ] PHP 登陆验证
 - [ ] ES 中文分词器使用，并自定义本领域专用名词
