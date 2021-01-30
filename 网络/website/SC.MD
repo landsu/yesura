@@ -449,7 +449,7 @@ def PythonToES(url, title, outlines, excerpts, subtitles):
 
 
 def main():
-    url = "http://www.panoramic.ministrypropagation.org/home/%e6%97%a7%e7%ba%a6%e9%b8%9f%e7%9e%b0/"
+    url = "URL"
     kv  = {'user-agent':'Chrome/10.0'}
     links = getURL(url, kv)           # 分类的link列表
     outlinelinks = getURL2(links, kv) # 所有纲目的link列表
