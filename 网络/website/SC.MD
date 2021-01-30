@@ -472,7 +472,7 @@ def main():
 #    print('msgexcerpts_len: ' + str(len(msgexcerpts)))
 #    print('outlinelinkss_len: ' + str(len(outlinelinks)))
 
-
+# 调用主程序
 main()
 
 
