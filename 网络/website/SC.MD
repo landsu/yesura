@@ -121,6 +121,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from collections import defaultdict
+from elasticsearch import Elasticsearch
 
 def getURL(url, kv):
     r = requests.get(url, headers = kv)
@@ -212,13 +213,21 @@ def getExcerpts(urls, kv):
         outlines.append(str0)
     return outlines
 
-def savetoJson(url, title, outlines, excerpts, subtitles): # 按Elasticsearch批量导入格式输出为JSON 
+def rmExtracodes(listdata):
+    prosessedlist = []
+    for item in listdata:
+        data = item.replace('\xa0','')
+        prosessedlist.append(data)
+    return prosessedlist
+
+# 按Elasticsearch批量导入格式，输出为 JSON 文档 (需要导出JSON时开开，不需要时，关闭)
+def savetoJson(url, title, outlines, excerpts, subtitles):
     ls1 = ['url', 'title', 'outline', 'excerpt', 'stitle']
     ls2 = url
-    ls3 = title
-    ls4 = outlines
-    ls5 = excerpts
-    ls6 = subtitles
+    ls3 = rmExtracodes(title)
+    ls4 = rmExtracodes(outlines)
+    ls5 = rmExtracodes(excerpts)
+    ls6 = rmExtracodes(subtitles)
     indexname = "pan"
     dl = []
     
@@ -234,20 +243,44 @@ def savetoJson(url, title, outlines, excerpts, subtitles): # 按Elasticsearch批
         dl.append(d)
         
     json_str = json.dumps(dl, ensure_ascii=False)
-    with open('test_data.json', 'w') as json_file:
-        json_file.write(json_str)   
-    return
+    with open('pan_data.json', 'w') as json_file:
+        json_file.write(json_str)
+
+# 自动写入到 Elasticsearch 数据库
+def PythonToES(url, title, outlines, excerpts, subtitles):  
+    ls1 = ['url', 'title', 'outline', 'excerpt', 'subtitle']
+    ls2 = url
+    ls3 = rmExtracodes(title)
+    ls4 = rmExtracodes(outlines)
+    ls5 = rmExtracodes(excerpts)
+    ls6 = rmExtracodes(subtitles)
+    
+    for i in range(0, len(ls2)):
+        data = {}
+        data[ls1[0]] = (ls2[i])
+        data[ls1[1]] = (ls3[i])
+        data[ls1[2]] = (ls4[i])
+        data[ls1[3]] = (ls5[i])
+        data[ls1[4]] = (ls6[i])
+        Elasticsearch().index(index="pantest", id=i, body=data)
+
+
 
 def main():
-    url = "大分类链接"
+    url = "http://www.panoramic.ministrypropagation.org/home/%e6%97%a7%e7%ba%a6%e9%b8%9f%e7%9e%b0/"
     kv  = {'user-agent':'Chrome/10.0'}
-    links = getURL(url, kv)           # 小分类的link列表
+    links = getURL(url, kv)           # 分类的link列表
     outlinelinks = getURL2(links, kv) # 所有纲目的link列表
     msgtitles = getTitles(outlinelinks, kv) # 篇题
     msgstitles = getStitles(outlinelinks, kv) # 小标题
     msgoutlines = getOutlines(outlinelinks, kv) # 纲目
     msgexcerpts = getExcerpts(outlinelinks, kv) # 摘录
-    savetoJson(outlinelinks, msgtitles, msgoutlines, msgexcerpts, msgstitles) # 格式化输出
+    PythonToES(outlinelinks, msgtitles, msgoutlines, msgexcerpts, msgstitles) # 自动写入 Elasticsearch
+
+    
+#    格式化输出: 按Elasticsearch批量导入格式，输出为 JSON 文档 （需要时开开）
+#    savetoJson(outlinelinks, msgtitles, msgoutlines, msgexcerpts, msgstitles) 
+
 
 # 问题排查与解决：
 #    print('outlinelinkss_len: ' + str(len(outlinelinks)))
@@ -256,10 +289,11 @@ def main():
 #    print('msgoutlines_len: ' + str(len(msgoutlines)))
 #    print('msgexcerpts_len: ' + str(len(msgexcerpts)))
 #    print('outlinelinkss_len: ' + str(len(outlinelinks)))
-#    print(outlinelinks)
-#    print(msgtitles)
+
 
 main()
+
+
 ```
 
 
