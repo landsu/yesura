@@ -1,17 +1,8 @@
 # 搜索网站设计记录
+tags: Python爬虫, Elasticsearch, PHP, JS, Vue, ElementUI
+<!-- toc -->
 
 
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ## 一、架构设计：
 
