@@ -20,7 +20,7 @@
     "cuav-chapters",
     "anchor-navigation-ex-toc",
     "todos",
-    "toc",
+    "etoc",
     "tags"
   ],
 
@@ -31,23 +31,23 @@
     "anchor-navigation-ex-toc": {
       "showLevel": false
     },
-    "page-toc": {
-      "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4",
-      "position": "before-first",
-      "showByDefault": true
-    },
-    "toc": {
-      "addClass": true,
-      "className": "toc"
-    },
+
     "etoc": {
       "h2lb": 3,
       "mindepth": 3,
       "maxdepth": 4,
       "notoc": false
     },
+    "simple-page-toc": {
+      "maxDepth": 3,
+      "skipFirstH1": true
+    },
     "tags": {
       "placement": "-bottom"
+    },
+    "toc": {
+      "addClass": true,
+      "className": "toc"
     }
   },
 

@@ -138,52 +138,72 @@ $ gitbook mobi
 ### 2、我的 book.json：
 
 ```json
-{
-    "name": "Yesura",
-    "version": "0.0.0",
-    "description": "Yesura",
-    "main": "./index.js",
-    "gitbook": "^3.2.3",
-    "gitbook-cli": "^2.3.2",
-    
+  {
+  "name": "Yesura",
+  "version": "0.0.0",
+  "description": "Yesura",
+  "main": "./index.js",
+  "gitbook": "^3.2.3",
+  "gitbook-cli": "^2.3.2",
 
 
-    "root": "./content",
-    "output": "./docs",
-    "title": "Yesura",
-    "plugins": [
-      "-lunr", "-search", "search-pro",
-      "fontsettings", 
-      "-highlight", "prism", "prism-themes",
-      "styled-blockquotes",
-      "copy-code-button",
-      "cuav-chapters",
-      "anchor-navigation-ex-toc"
-    ],
-    "pluginsConfig": {
-      "prism": {
-          "css": ["prismjs/themes/prism-okaidia.css"]
-       },
-       "anchor-navigation-ex-toc": {
-        "showLevel": false
-       }
+
+  "root": "./content",
+  "output": "./docs",
+  "title": "Yesura",
+  "plugins": [
+    "-lunr", "-search", "search-pro",
+    "fontsettings",
+    "-highlight", "prism", "prism-themes",
+    "styled-blockquotes",
+    "copy-code-button",
+    "cuav-chapters",
+    "anchor-navigation-ex-toc",
+    "todos",
+    "etoc",
+    "tags"
+  ],
+
+  "pluginsConfig": {
+    "prism": {
+      "css": ["prismjs/themes/prism-okaidia.css"]
     },
-    
-    
-    "styles": {
-      "website": "styles/website.css",
-      "ebook": "styles/ebook.css",
-      "pdf": "styles/pdf.css",
-      "mobi": "styles/mobi.css",
-      "epub": "styles/epub.css"
+    "anchor-navigation-ex-toc": {
+      "showLevel": false
     },
-    
 
-    
-    "variables": {
-        "version": "1.0.0"
+    "etoc": {
+      "h2lb": 3,
+      "mindepth": 3,
+      "maxdepth": 4,
+      "notoc": false
+    },
+    "simple-page-toc": {
+      "maxDepth": 3,
+      "skipFirstH1": true
+    },
+    "tags": {
+      "placement": "-bottom"
+    },
+    "toc": {
+      "addClass": true,
+      "className": "toc"
     }
-}  
+  },
+
+
+  "styles": {
+    "website": "styles/website.css",
+    "ebook": "styles/ebook.css",
+    "pdf": "styles/pdf.css",
+    "mobi": "styles/mobi.css",
+    "epub": "styles/epub.css"
+  },
+
+  "variables": {
+    "version": "1.0.0"
+  }
+}
 ```
 
 ### 3、去掉自带链接：“[Published with GitBook](https://www.gitbook.com/)”
