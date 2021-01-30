@@ -1,62 +1,52 @@
 {
-    "name": "Yesura",
-    "version": "0.0.0",
-    "description": "Yesura",
-    "main": "./index.js",
-    "gitbook": "^3.2.3",
-    "gitbook-cli": "^2.3.2",
-    
+  "name": "Yesura",
+  "version": "0.0.0",
+  "description": "Yesura",
+  "main": "./index.js",
+  "gitbook": "^3.2.3",
+  "gitbook-cli": "^2.3.2",
 
 
-    "root": "./content",
-    "output": "./docs",
-    "title": "Yesura",
-    "plugins": [
-      "-lunr", "-search", "search-pro",
-      "fontsettings", 
-      "-highlight", "prism", "prism-themes",
-      "styled-blockquotes",
-      "copy-code-button",
-      "cuav-chapters",
-      "anchor-navigation-ex-toc",
-      "-todo",
-      "todos"
-    ],
-    "pluginsConfig": {
-      "prism": {
-          "css": ["prismjs/themes/prism-okaidia.css"]
-       },
-       "anchor-navigation-ex-toc": {
-        "showLevel": false
-       }
+
+  "root": "./content",
+  "output": "./docs",
+  "title": "Yesura",
+  "plugins": [
+    "-lunr", "-search", "search-pro",
+    "fontsettings",
+    "-highlight", "prism", "prism-themes",
+    "styled-blockquotes",
+    "copy-code-button",
+    "cuav-chapters",
+    "anchor-navigation-ex-toc",
+    "todos",
+    "page-toc"
+  ],
+
+  "pluginsConfig": {
+    "prism": {
+      "css": ["prismjs/themes/prism-okaidia.css"]
     },
-    
-    
-    "styles": {
-      "website": "styles/website.css",
-      "ebook": "styles/ebook.css",
-      "pdf": "styles/pdf.css",
-      "mobi": "styles/mobi.css",
-      "epub": "styles/epub.css"
+    "anchor-navigation-ex-toc": {
+      "showLevel": false
     },
-    
-
-    
-    "variables": {
-        "version": "1.0.0"
-    },
+    "page-toc": {
+      "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4",
+      "position": "before-first",
+      "showByDefault": true
+    }
+  },
 
 
+  "styles": {
+    "website": "styles/website.css",
+    "ebook": "styles/ebook.css",
+    "pdf": "styles/pdf.css",
+    "mobi": "styles/mobi.css",
+    "epub": "styles/epub.css"
+  },
 
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/yesura/yesura.github.io.git"
-    },
-    "keywords": "Yesura",
-    "author": "Stephen",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/yesura/yesura.github.io/issues"
-    },
-    "homepage": "https://yesura.github.io/"
-}  
+  "variables": {
+    "version": "1.0.0"
+  }
+}
