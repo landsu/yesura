@@ -10,7 +10,7 @@
 
 ### 1、Python 爬虫
 
-1. **模拟浏览器爬取网页数据：**
+- **模拟浏览器爬取网页数据：**
 
 ```python
 import requests
@@ -21,7 +21,7 @@ r.status_code #查看状态，200即表示已经成功抓取数据，其他数�
 r.text #显示数据包内容（无格式）
 ```
 
-2. **对抓取的HTML数据，或本地HTML文件解析：**
+- **对抓取的HTML数据，或本地HTML文件解析：**
 
 ```python
 from bs4 import BeautifulSoup #引入BeautifulSoup库
@@ -29,7 +29,7 @@ soup = BeautifulSoup(data, 'html.parser') #data可以是"<p>Hello World!</p>"", 
 print(soup.prettiy()) #格式化输出
 ```
 
-3. **提取想要的信息：**
+- **提取想要的信息：**
 
 ```python
 content = soup.p.parent #提取信息
@@ -44,7 +44,7 @@ for str in smalltilte:
 
 ```
 
-4. **保存信息为 JSON 文档：**
+- **保存信息为 JSON 文档：**
 
 ```python
 for titles in smalltitle:
@@ -63,7 +63,7 @@ with open('test_data.json', 'w') as json_file: # json文件路径默认是C盘Us
     json_file.write(json_str)
 ```
 
-5. **清明网获取小标题的爬虫代码：**
+- **清明网获取小标题的爬虫代码：**
 
 ```python
 import re
@@ -101,17 +101,168 @@ with open('test_data.json', 'w') as json_file:
     json_file.write(json_str)
 ```
 
+- **清明爬虫程序全代码备份**
 
+```python
+import re
+import requests
+import json
+from bs4 import BeautifulSoup
+from collections import defaultdict
+
+def getURL(url, kv):
+    r = requests.get(url, headers = kv)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    content = soup.p.parent
+    urls = content.find_all('a')
+    links = []
+    for link in urls:
+        links.append(link.attrs['href'])
+    return links
+
+def getURL2(links, kv):
+    sublinks = []
+    for link in links:
+        r = requests.get(link, headers = kv, timeout = 30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+        content = soup.p.parent
+        urls = content.find_all('a')
+        for link in urls:
+            if link.string == "纲目":                         # 如果a标签里的内容是纲目，就把此标签的herf添加到sublinks列表
+                sublinks.append(link.attrs['href'])
+    return sublinks
+
+def getTitles(urls, kv):
+    mtitles = []
+    for link in urls:
+        r = requests.get(link, headers = kv, timeout = 30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+        titles = soup.find_all('h4')
+        for title in titles:
+            mtitles.append(title.string)
+    return mtitles
+
+def getStitles(urls, kv):
+    stitles = []
+    for link in urls:
+        r = requests.get(link, headers = kv, timeout = 30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+        content = soup.p.parent
+        titles = content.find_all('p', style="text-align: center;")
+        tpls1 = []
+        tpls2 = []
+        for title in titles:
+            tpls1.append(title.string)
+        tpls2 = "、".join(tpls1)
+        stitles.append(tpls2)
+    return stitles
+
+def getOutlines(urls, kv):
+    outlines = []
+    dr = re.compile(r'<[^>]+>', re.S)
+    for link in urls:
+        r = requests.get(link, headers = kv, timeout = 30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+        excerpts = soup.find('p', string = '职事信息摘录：')
+#        title = soup.title.string                              # 纠错机制，如果有错误，开启此处代码，定位篇题
+#        outlines.append(title)
+#        outlines.append(excerpts)
+        outlinetags = excerpts.find_previous_siblings('p')
+        tpls1 = []
+        for outline in outlinetags:
+            dd = dr.sub('', str(outline))
+            tpls1.append(dd)
+        str0 = "、".join(tpls1)
+        outlines.append(str0)
+    return outlines
+
+def getExcerpts(urls, kv):
+    outlines = []
+    dr = re.compile(r'<[^>]+>', re.S)
+    for link in urls:
+        r = requests.get(link, headers = kv, timeout = 30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+        excerpts = soup.find('p', string = '职事信息摘录：')
+#        title = soup.title.string                              # 纠错机制，如果有错误，开启此处代码，定位篇题
+#        outlines.append(title)
+#        outlines.append(excerpts)
+        outlinetags = excerpts.find_next_siblings('p')
+        tpls1 = []
+        for outline in outlinetags:
+            dd = dr.sub('', str(outline))
+            tpls1.append(dd)
+        str0 = "、".join(tpls1)
+        outlines.append(str0)
+    return outlines
+
+def savetoJson(url, title, outlines, excerpts, subtitles): # 按Elasticsearch批量导入格式输出为JSON 
+    ls1 = ['url', 'title', 'outline', 'excerpt', 'stitle']
+    ls2 = url
+    ls3 = title
+    ls4 = outlines
+    ls5 = excerpts
+    ls6 = subtitles
+    indexname = "pan"
+    dl = []
+    
+    for i in range(0, len(ls2)):
+        d = {}
+        d[ls1[0]] = (ls2[i])
+        d[ls1[1]] = (ls3[i])
+        d[ls1[2]] = (ls4[i])
+        d[ls1[3]] = (ls5[i])
+        d[ls1[4]] = (ls6[i])
+        d2 = {"index":{"_index":indexname, "_id":i}}
+        dl.append(d2)
+        dl.append(d)
+        
+    json_str = json.dumps(dl, ensure_ascii=False)
+    with open('test_data.json', 'w') as json_file:
+        json_file.write(json_str)   
+    return
+
+def main():
+    url = "大分类链接"
+    kv  = {'user-agent':'Chrome/10.0'}
+    links = getURL(url, kv)           # 小分类的link列表
+    outlinelinks = getURL2(links, kv) # 所有纲目的link列表
+    msgtitles = getTitles(outlinelinks, kv) # 篇题
+    msgstitles = getStitles(outlinelinks, kv) # 小标题
+    msgoutlines = getOutlines(outlinelinks, kv) # 纲目
+    msgexcerpts = getExcerpts(outlinelinks, kv) # 摘录
+    savetoJson(outlinelinks, msgtitles, msgoutlines, msgexcerpts, msgstitles) # 格式化输出
+
+# 问题排查与解决：
+#    print('outlinelinkss_len: ' + str(len(outlinelinks)))
+#    print('msgtitles_len: ' + str(len(msgtitles)))
+#    print('msgstitles_len: ' + str(len(msgstitles)))
+#    print('msgoutlines_len: ' + str(len(msgoutlines)))
+#    print('msgexcerpts_len: ' + str(len(msgexcerpts)))
+#    print('outlinelinkss_len: ' + str(len(outlinelinks)))
+#    print(outlinelinks)
+#    print(msgtitles)
+
+main()
+```
+
+
+
+- [BeautifulSoup 中文文档](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/)
 
 ### 2、Elasticsearch API
 
-1. **PHP 调用 ES:**
+- **PHP 调用 ES:**
 
 ```php+HTML
 待更新....
 ```
 
-2. **批量导入数据：**
+- **批量导入数据：**
 
 ```
 POST _bulk
@@ -136,7 +287,42 @@ POST _bulk
 
 待更新
 
-### 7、正则表达式语法表：
+### 7、正则表达式：
+
+- **去掉string类里面的html标签：**
+
+```python
+# 规则：
+content = re.compile(r'<[^>]+>', re.S).sub('', '<p>内容</p>')
+
+# 用法：    
+import re
+html='<p style='font-size: 1em'>标题<strong>正文</strong></p>'
+dr = re.compile(r'<[^>]+>', re.S)
+dd = dr.sub('', html)
+print(dd)
+	标题正文
+    
+# 实例：
+import re
+import requests
+from bs4 import BeautifulSoup
+
+url='https://www.google.com'
+r = requests.get(url)
+soup = BeautifulSoup(r.text, 'html.parser')
+html = soup.find_all('p')
+dr = re.compile(r'<[^>]+>', re.S)
+data = []
+for content in html:
+    dd = dr.sub('', str(content)) # (.sub 能处理string类，所以要先转换成string)
+    data.append(dd)
+print(data)
+	'[© 2021 - Privacy - Terms]'
+
+```
+
+- **语法表：**
 
 | 字符          | 释义                                                         |
 | ------------- | ------------------------------------------------------------ |
@@ -201,8 +387,8 @@ POST _bulk
 - [x] 多类合并查询
 - [x] 查询结果高亮、
 - [x] 查询结果显示内容链接
-- [ ] Python按Elasticsearch批量导入代码格式，输出数据（完成百分九十，剩余部分容易）
-- [ ] Python爬取纲目、摘录
+- [x] Python按Elasticsearch批量导入代码格式，输出数据（完成百分九十，剩余部分容易）
+- [x] Python爬取纲目、摘录
 - [ ] Python自动导入数据到Elasticsearch
 - [ ] Vue + ElementUI 设计登陆页、查询页、搜索结果页
 - [ ] PHP 登陆验证
@@ -212,9 +398,9 @@ POST _bulk
 
 ## 五、搜索功能
 
-- [ ] 模糊搜索
-- [ ] Tag搜索
+- [ ] 小标题搜索
 - [ ] 纲目搜索
 - [ ] 摘录搜索
+- [ ] Tag搜索
+- [ ] 模糊搜索
 - [ ] 经文搜索
-- [ ] 小标题搜索
