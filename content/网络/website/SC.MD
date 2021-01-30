@@ -4,13 +4,13 @@ tags: Python爬虫, Elasticsearch, PHP, JS, Vue, ElementUI
 
 
 
-## 架构设计：
+## 一、架构设计：
 
 ![](1.jpg)
 
-## 开发：技术研究与总结
+## 二、开发：技术研究与总结
 
-### Python 爬虫
+### 1、Python 爬虫
 
 - **模拟浏览器爬取网页数据：**
 
@@ -266,7 +266,7 @@ main()
 
 - [BeautifulSoup 中文文档](https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/)
 
-### Elasticsearch API
+### 2、Elasticsearch API
 
 - **Python写入数据：**
 
@@ -308,23 +308,23 @@ POST _bulk
 
 ```
 
-### Vue：
+### 3、Vue：
 
 待更新
 
-### Element-UI
+### 4、Element-UI
 
 待更新
 
-### JavaScript
+### 5、JavaScript
 
 待更新
 
-### PHP
+### 6、PHP
 
 待更新
 
-### 正则表达式：
+### 7、正则表达式：
 
 - **去掉string类里面的html标签：**
 
@@ -404,12 +404,12 @@ print(data)
 | \nml          | 当 *n* 是八进制数 (0-3)，*m* 和 *l* 是八进制数 (0-7) 时，匹配八进制转义码 *nml*。 |
 | \u*n*         | 匹配 *n*，其中 *n* 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (?)。 |
 
-## 上传与维护：
+## 三、上传与维护：
 
 1. 购买服务器上传网站，调试配置服务器
 2. 购买域名绑定服务器
 
-## Todo List
+## 四、Todo List
 
 - [x] PHP、Python、JS、Vue、Elasticsearch开发环境配置
 - [x] Elasticsearch批量导入方法
@@ -424,7 +424,7 @@ print(data)
 - [x] 多类合并查询
 - [x] 查询结果高亮、
 - [x] 查询结果显示内容链接
-- [x] Python按Elasticsearch批量导入代码格式，输出数据（完成百分九十，剩余部分容易）
+- [x] Python按Elasticsearch批量导入代码格式，输出数据
 - [x] Python爬取纲目、摘录
 - [x] Python自动导入数据到Elasticsearch
 - [ ] Vue + ElementUI 设计登陆页、查询页、搜索结果页
@@ -433,7 +433,7 @@ print(data)
 - [ ] ES 模糊搜索技术应用
 - [ ] 导入清明之外的其他数据，丰富查询范围
 
-## 搜索功能
+## 五、搜索功能
 
 - [ ] 小标题搜索
 - [ ] 纲目搜索
