@@ -31,17 +31,13 @@
                   <i class="el-icon-s-tools"></i>
                   <span slot="title">系统相关</span>
                 </el-menu-item>
-                <el-menu-item index="3.1">
-                  <i class="el-icon-star-on"></i>
+                <el-menu-item index="4">
+                  <i class="el-icon-s-claim"></i>
                   <span slot="title">装机必备</span>
                 </el-menu-item>
-                <el-menu-item index="8">
+                <el-menu-item index="5">
                   <i class="el-icon-s-grid"></i>
                   <span slot="title">开发/Coding</span>
-                </el-menu-item>
-                <el-menu-item index="10">
-                  <i class="el-icon-s-help"></i>
-                  <span slot="title">加密/密码管理</span>
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -49,35 +45,384 @@
         </el-aside>
         <el-main>
           <el-row>
-            <el-col :span="18" :offset="3">
-              <el-card shadow="never" style="background-color: #f9f9f9">
+            <el-col :span="22" :offset="1">
+              <el-card shadow="never" style="background-color: #f9f9f9" v-if="card==='1'">
                 <div style="font-weight: 600">设计制作</div>
                 <hr class="solid" />
-                <el-row :gutter="20">
+                <el-row :gutter="10">
                   <el-col :span="4">
-                    <div @click="adobe">
+                    <div @click="jump(0)">
                       <el-card shadow="hover" style="cursor: pointer">
                         <span>Adobe</span>
                       </el-card>
                     </div>
                   </el-col>
+
                   <el-col :span="4">
-                    <div><el-card shadow="hover" style="cursor: pointer">项目1</el-card></div>
+                    <div @click="jump(1)">
+                      <el-card shadow="hover" style="cursor: pointer">
+                        <span>DaVinci</span>
+                      </el-card>
+                    </div>
                   </el-col>
+
                   <el-col :span="4">
-                    <div><el-card shadow="hover" style="cursor: pointer">项目2</el-card></div>
-                  </el-col>
-                  <el-col :span="4">
-                    <div><el-card shadow="hover" style="cursor: pointer">项目3</el-card></div>
-                  </el-col>
-                  <el-col :span="4">
-                    <div><el-card shadow="hover" style="cursor: pointer">项目4</el-card></div>
-                  </el-col>
-                  <el-col :span="4">
-                    <div><el-card shadow="hover" style="cursor: pointer">项目5</el-card></div>
+                    <div @click="jump(2)">
+                      <el-card shadow="hover" style="cursor: pointer">
+                        <span>ScreenToGif</span>
+                      </el-card>
+                    </div>
                   </el-col>
                 </el-row>
               </el-card>
+              <div v-else-if="card==='2'">
+                <el-card shadow="never" style="background-color: #f9f9f9">
+                  <div style="font-weight: 600">办公/文档</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(3)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Office</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(0)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>PDF</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(4)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <el-popover placement="top-start" title="注册码" width="100" trigger="hover" content="">
+                            <span slot="reference">PDB</span>
+                          </el-popover>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(5)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>TXT</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(6)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>MD</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">笔记类</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(8)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Notion</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(9)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Obsidian</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(10)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>RemNote</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </div>
+
+              <div v-else-if="card==='3'">
+                <el-card shadow="never" style="background-color: #f9f9f9">
+                  <div style="font-weight: 600">系统镜像</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(7)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Win 官方镜像</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(3)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>MSDN我告诉你</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">系统安装工具</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(11)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>WePE</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(12)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>DiskGenius</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">系统优化</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(13)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Dism++</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(14)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>XMeters</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(15)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Mem Reduct</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(16)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>8GadgetPack</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">虚拟机</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(24)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Vmware</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(26)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>VitualBox</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(27)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>MuMu</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">远程控制 | 屏幕扩展</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(28)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>TeamViewer</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(29)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Anydesk</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(30)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Spacedesk</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </div>
+
+              <div v-else-if="card==='4'">
+                <el-card shadow="never" style="background-color: #f9f9f9">
+                  <div style="font-weight: 600">播放器</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(17)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>VLC Player</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(18)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Pot Player</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(19)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>QQ Player</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">输入法</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(20)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>小狼豪</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(21)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>手心输入法</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">解压缩 | 加密硬盘 | 密码管理</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(22)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>7-zip</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(23)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>VeraCrypt</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(24)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>KeePass</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">下载器</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(31)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>IDM</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(32)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>FDM</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </div>
+
+              <div v-else-if="card==='5'">
+                <el-card shadow="never" style="background-color: #f9f9f9">
+                  <div style="font-weight: 600">播放器</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(33)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>VS Code</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(34)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Git</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(35)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>PyCharm Rest</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </div>
             </el-col>
           </el-row>
         </el-main>
@@ -90,15 +435,16 @@
     var vm = {
       data() {
         return {
-          data: "",
+          card: "1",
         };
       },
       methods: {
         handleOpen(index) {
-          console.log(index);
+          this.card = index;
         },
-        adobe() {
-          window.open("https://www.yijingying.com/825.html");
+        jump(data) {
+          var list = ["https://www.yijingying.com/825.html", "https://www.blackmagicdesign.com/products/davinciresolve/", "https://www.screentogif.com/", "https://msdn.itellyou.cn/", "http://www.isilo.com/download/", "https://notepad-plus-plus.org/downloads/", "https://typora.io/", "https://www.microsoft.com/en-us/software-download/windows10", "https://www.notion.so/", "https://obsidian.md/", "https://www.remnote.io/", "http://www.wepe.com.cn/download.html", "https://www.diskgenius.cn/", "https://www.chuyu.me/zh-Hans/index.html", "https://entropy6.com/xmeters/", "https://www.henrypp.org/product/memreduct", "https://8gadgetpack.net/", "https://www.videolan.org/vlc/index.html", "https://potplayer.daum.net/", "https://player.qq.com/", "https://rime.im/", "http://www.xinshuru.com/index.html", "https://www.7-zip.org/7z.html", "https://www.veracrypt.fr/code/VeraCrypt/", "https://keepass.info/", "https://www.vmware.com/", "https://www.virtualbox.org/", "https://mumu.163.com/", "https://www.teamviewer.com/en/", "https://anydesk.com/en", "https://spacedesk.net", "https://www.internetdownloadmanager.com/", "https://www.freedownloadmanager.org/", "https://code.visualstudio.com/", "https://git-scm.com/", "https://zhile.io/2020/11/18/jetbrains-eval-reset-da33a93d.html"];
+          window.open(list[data]);
         },
       },
     };
@@ -130,6 +476,21 @@
       border-top: 0px solid #bbb;
       margin-top: 1em;
       margin-bottom: 1em;
+    }
+    .el-aside {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 0;
+    }
+    .el-main {
+      position: absolute;
+      left: 300px;
+      right: 0;
+      top: 10px;
+      bottom: 0;
+      overflow-y: scroll;
     }
   </style>
 </html>
