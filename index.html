@@ -10,50 +10,82 @@
         display: none !important;
       }
     </style>
-    <title>Pansearch</title>
+    <title>Yes导航</title>
   </head>
   <body>
     <div id="app" v-cloak>
-      <el-row>
-        <el-divider content-position="left"> <i class="el-icon-s-home"></i> 导航 </el-divider>
-        <el-col :span="18" :offset="3">
-          <el-card shadow="never" style="background-color: #f9f9f9">
-            <div style="font-weight: 600">软件</div>
-            <el-divider></el-divider>
-            <el-row :gutter="20">
-              <el-col :span="4">
-                <div @click="zhcn">
-                  <el-card shadow="hover" style="cursor: pointer">
-                    <el-tooltip class="item" effect="dark" content="url" placement="top-start">
-                      <span>项目1</span>
-                    </el-tooltip>
-                  </el-card>
-                </div>
-              </el-col>
-              <el-col :span="4">
-                <div @click="zhcn"><el-card shadow="hover" style="cursor: pointer">项目1</el-card></div>
-              </el-col>
-              <el-col :span="4">
-                <div @click="zhcn"><el-card shadow="hover" style="cursor: pointer">项目2</el-card></div>
-              </el-col>
-              <el-col :span="4">
-                <div @click="zhcn"><el-card shadow="hover" style="cursor: pointer">项目3</el-card></div>
-              </el-col>
-              <el-col :span="4">
-                <div @click="zhcn"><el-card shadow="hover" style="cursor: pointer">项目4</el-card></div>
-              </el-col>
-              <el-col :span="4">
-                <div @click="zhcn"><el-card shadow="hover" style="cursor: pointer">项目5</el-card></div>
-              </el-col>
-            </el-row>
-          </el-card>
-        </el-col>
-      </el-row>
+      <el-container>
+        <el-aside>
+          <el-row class="tac">
+            <el-col>
+              <el-menu default-active="1" class="el-menu-vertical-demo" @select="handleOpen">
+                <el-menu-item index="1">
+                  <i class="el-icon-s-opportunity"></i>
+                  <span slot="title">设计制作</span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                  <i class="el-icon-s-management"></i>
+                  <span slot="title">办公/文档/笔记</span>
+                </el-menu-item>
+                <el-menu-item index="3">
+                  <i class="el-icon-s-tools"></i>
+                  <span slot="title">系统相关</span>
+                </el-menu-item>
+                <el-menu-item index="3.1">
+                  <i class="el-icon-star-on"></i>
+                  <span slot="title">装机必备</span>
+                </el-menu-item>
+                <el-menu-item index="8">
+                  <i class="el-icon-s-grid"></i>
+                  <span slot="title">开发/Coding</span>
+                </el-menu-item>
+                <el-menu-item index="10">
+                  <i class="el-icon-s-help"></i>
+                  <span slot="title">加密/密码管理</span>
+                </el-menu-item>
+              </el-menu>
+            </el-col>
+          </el-row>
+        </el-aside>
+        <el-main>
+          <el-row>
+            <el-col :span="18" :offset="3">
+              <el-card shadow="never" style="background-color: #f9f9f9">
+                <div style="font-weight: 600">设计制作</div>
+                <hr class="solid" />
+                <el-row :gutter="20">
+                  <el-col :span="4">
+                    <div @click="adobe">
+                      <el-card shadow="hover" style="cursor: pointer">
+                        <span>Adobe</span>
+                      </el-card>
+                    </div>
+                  </el-col>
+                  <el-col :span="4">
+                    <div><el-card shadow="hover" style="cursor: pointer">项目1</el-card></div>
+                  </el-col>
+                  <el-col :span="4">
+                    <div><el-card shadow="hover" style="cursor: pointer">项目2</el-card></div>
+                  </el-col>
+                  <el-col :span="4">
+                    <div><el-card shadow="hover" style="cursor: pointer">项目3</el-card></div>
+                  </el-col>
+                  <el-col :span="4">
+                    <div><el-card shadow="hover" style="cursor: pointer">项目4</el-card></div>
+                  </el-col>
+                  <el-col :span="4">
+                    <div><el-card shadow="hover" style="cursor: pointer">项目5</el-card></div>
+                  </el-col>
+                </el-row>
+              </el-card>
+            </el-col>
+          </el-row>
+        </el-main>
+      </el-container>
     </div>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.23.0/dist/axios.min.js"></script>
   <script>
     var vm = {
       data() {
@@ -62,11 +94,11 @@
         };
       },
       methods: {
-        goBack() {
-          window.location.href = "http://137.220.56.143/";
+        handleOpen(index) {
+          console.log(index);
         },
-        zhcn() {
-          alert("中英对照");
+        adobe() {
+          window.open("https://www.yijingying.com/825.html");
         },
       },
     };
@@ -90,8 +122,14 @@
       color: #888;
     }
 
-    .el-divider__text {
+    .el-divider__text,
+    .el-menu {
       background-color: #f3f3f3;
+    }
+    hr.solid {
+      border-top: 0px solid #bbb;
+      margin-top: 1em;
+      margin-bottom: 1em;
     }
   </style>
 </html>
