@@ -25,7 +25,7 @@
                 </el-menu-item>
                 <el-menu-item index="2">
                   <i class="el-icon-s-management"></i>
-                  <span slot="title">办公/文档/笔记</span>
+                  <span slot="title">文档笔记</span>
                 </el-menu-item>
                 <el-menu-item index="3">
                   <i class="el-icon-s-tools"></i>
@@ -35,9 +35,13 @@
                   <i class="el-icon-s-claim"></i>
                   <span slot="title">装机必备</span>
                 </el-menu-item>
+                <el-menu-item index="6">
+                  <i class="el-icon-s-platform"></i>
+                  <span slot="title">效率工具</span>
+                </el-menu-item>
                 <el-menu-item index="5">
                   <i class="el-icon-s-grid"></i>
-                  <span slot="title">开发/Coding</span>
+                  <span slot="title">开发工具</span>
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -77,7 +81,7 @@
               </el-card>
               <div v-else-if="card==='2'">
                 <el-card shadow="never" style="background-color: #f9f9f9">
-                  <div style="font-weight: 600">办公/文档</div>
+                  <div style="font-weight: 600">文档</div>
                   <hr class="solid" />
                   <el-row :gutter="10">
                     <el-col :span="4">
@@ -394,7 +398,7 @@
 
               <div v-else-if="card==='5'">
                 <el-card shadow="never" style="background-color: #f9f9f9">
-                  <div style="font-weight: 600">播放器</div>
+                  <div style="font-weight: 600">开发工具</div>
                   <hr class="solid" />
                   <el-row :gutter="10">
                     <el-col :span="4">
@@ -423,6 +427,102 @@
                   </el-row>
                 </el-card>
               </div>
+
+              <div v-else-if="card==='6'">
+                <el-card shadow="never" style="background-color: #f9f9f9">
+                  <div style="font-weight: 600">文件搜索</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(36)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Everything</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(37)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Listary</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">文档全文搜索</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(38)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>AnyTXT Searcher</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(39)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>File Locator Pro</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(40)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Agent Ransack</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(41)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>BBdoc</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(42)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>DocFetcher</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+
+                <el-card shadow="never" style="background-color: #f9f9f9; margin-top: 3em">
+                  <div style="font-weight: 600">快捷键/工作流</div>
+                  <hr class="solid" />
+                  <el-row :gutter="10">
+                    <el-col :span="4">
+                      <div @click="jump(43)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>AutoHotkey</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <div @click="jump(44)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>Pywinauto</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                    <el-col :span="4">
+                      <div @click="jump(45)">
+                        <el-card shadow="hover" style="cursor: pointer">
+                          <span>PyAutoGUI</span>
+                        </el-card>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </div>
             </el-col>
           </el-row>
         </el-main>
@@ -443,7 +543,7 @@
           this.card = index;
         },
         jump(data) {
-          var list = ["https://www.yijingying.com/825.html", "https://www.blackmagicdesign.com/products/davinciresolve/", "https://www.screentogif.com/", "https://msdn.itellyou.cn/", "http://www.isilo.com/download/", "https://notepad-plus-plus.org/downloads/", "https://typora.io/", "https://www.microsoft.com/en-us/software-download/windows10", "https://www.notion.so/", "https://obsidian.md/", "https://www.remnote.io/", "http://www.wepe.com.cn/download.html", "https://www.diskgenius.cn/", "https://www.chuyu.me/zh-Hans/index.html", "https://entropy6.com/xmeters/", "https://www.henrypp.org/product/memreduct", "https://8gadgetpack.net/", "https://www.videolan.org/vlc/index.html", "https://potplayer.daum.net/", "https://player.qq.com/", "https://rime.im/", "http://www.xinshuru.com/index.html", "https://www.7-zip.org/7z.html", "https://www.veracrypt.fr/code/VeraCrypt/", "https://keepass.info/", "https://www.vmware.com/", "https://www.virtualbox.org/", "https://mumu.163.com/", "https://www.teamviewer.com/en/", "https://anydesk.com/en", "https://spacedesk.net", "https://www.internetdownloadmanager.com/", "https://www.freedownloadmanager.org/", "https://code.visualstudio.com/", "https://git-scm.com/", "https://zhile.io/2020/11/18/jetbrains-eval-reset-da33a93d.html"];
+          var list = ["https://www.yijingying.com/825.html", "https://www.blackmagicdesign.com/products/davinciresolve/", "https://www.screentogif.com/", "https://msdn.itellyou.cn/", "http://www.isilo.com/download/", "https://notepad-plus-plus.org/downloads/", "https://typora.io/", "https://www.microsoft.com/en-us/software-download/windows10", "https://www.notion.so/", "https://obsidian.md/", "https://www.remnote.io/", "http://www.wepe.com.cn/download.html", "https://www.diskgenius.cn/", "https://www.chuyu.me/zh-Hans/index.html", "https://entropy6.com/xmeters/", "https://www.henrypp.org/product/memreduct", "https://8gadgetpack.net/", "https://www.videolan.org/vlc/index.html", "https://potplayer.daum.net/", "https://player.qq.com/", "https://rime.im/", "http://www.xinshuru.com/index.html", "https://www.7-zip.org/7z.html", "https://www.veracrypt.fr/code/VeraCrypt/", "https://keepass.info/", "https://www.vmware.com/", "https://www.virtualbox.org/", "https://mumu.163.com/", "https://www.teamviewer.com/en/", "https://anydesk.com/en", "https://spacedesk.net", "https://www.internetdownloadmanager.com/", "https://www.freedownloadmanager.org/", "https://code.visualstudio.com/", "https://git-scm.com/", "https://zhile.io/2020/11/18/jetbrains-eval-reset-da33a93d.html", "https://www.voidtools.com/zh-cn/", "https://www.listary.com/", "https://anytxt.net/", "https://www.mythicsoft.com/filelocatorpro/", "https://www.mythicsoft.com/agentransack/", "http://www.bbdoc.cn/", "http://docfetcher.sourceforge.net/en/index.html", "https://www.autohotkey.com/", "https://pywinauto.readthedocs.io/en/latest/", "https://pyautogui.readthedocs.io/en/latest/"];
           window.open(list[data]);
         },
       },
